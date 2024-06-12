@@ -4,7 +4,17 @@
  
  */
 
+#include "RequestQueue.cpp"
+
 class loadbalancer{
 
+    
+    
+        
+    
+    public:
+        RequestQueue reqQueue;
+        void fillQueue(int numServers);
+        
 
 };

@@ -7,24 +7,17 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "request.h"
 
-struct request {
-
-    std::string method;
-    std::string url;
-    std::string protocol;
-    std::string header;
-
-};
-
-class queue{
+class RequestQueue{
 
     private:
         std::vector<request> queue;
 
     public:
-        void push(request req);
+        void push(request req){queue.push_back(req);};
         request pop();
+        size_t size(){return queue.size();}
 
 
 };
