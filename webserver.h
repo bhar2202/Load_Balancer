@@ -7,12 +7,13 @@
 
 class webserver{
 
-    bool isRunningProcess = false;
+    private:
+        bool isRunningProcess = false;
+        int serverID;
 
-
-    //webserver();
 
     public:
+        webserver(int serverID);
         void processRequest();
 
 };

@@ -6,4 +6,6 @@
 
 #include "webserver.h"
 
-//webserver::webserver(){};
+webserver::webserver(int s){
+    serverID = s;
+};
