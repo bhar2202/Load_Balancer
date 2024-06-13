@@ -16,7 +16,12 @@ class RequestQueue{
 
     public:
         void push(request req){queue.push_back(req);};
-        request pop();
+        request pop(){
+            request item;
+            item = queue.at(0);
+            queue.erase(queue.begin(),queue.begin()+1);
+            return item;
+        };
         size_t size(){return queue.size();}
 
 

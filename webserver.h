@@ -14,6 +14,8 @@ class webserver{
 
     public:
         webserver(int serverID);
+        void startRequest(){isRunningProcess = true;}
         void processRequest();
+        bool getStatus(){return isRunningProcess;}
 
 };

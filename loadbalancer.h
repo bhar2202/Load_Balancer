@@ -14,6 +14,8 @@
 #include <chrono>
 #include <thread>
 #include <fstream>
+#include <mutex>
+#include <random>
 
 class loadbalancer{
 
@@ -22,15 +24,16 @@ class loadbalancer{
         
         std::vector<webserver> servers;
         std::string generateRandomIPAddress(int serverID);
-        std::ofstream logFile;
+        
         void generateLogFile();
 
     public:
         RequestQueue reqQueue;
         int numServers;
         int totalClockCycles;
-
+        std::ofstream logFile;
         loadbalancer(int numServers,int numClockCycles);
+        static void handleRequest(int reqID);
         void generateServers();
         void fillQueue();
         void run();
