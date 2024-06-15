@@ -1,7 +1,8 @@
-/*
-    Author: Brack Harmon
-    Date: 6/10/2024
- 
+/*!
+ * \file loadbalancer.h
+ * \brief headerfile for loadbalancer class
+ * \author Brack Harmon
+ * \date 6/10/2024
  */
 
 #include "RequestQueue.cpp"
@@ -18,25 +19,22 @@
 #include <random>
 
 class loadbalancer{
-
     
     private:
         
         std::vector<webserver> servers;
         std::string generateRandomIPAddress();
-        
         void generateLogFile();
+        int numServers;
+        int totalClockCycles;
 
     public:
         RequestQueue reqQueue;
-        int numServers;
-        int totalClockCycles;
         std::ofstream logFile;
         loadbalancer(int numServers,int numClockCycles);
         static void handleRequest(webserver* server, std::ofstream* file);
         void generateServers();
         void fillQueue();
         void run();
-        
 
 };

@@ -1,15 +1,17 @@
-/*
-    Author: Brack Harmon
-    Date: 6/10/2024
- 
+/*!
+ * \file webserver.h
+ * \brief header file for the webserver class
+ * \author Brack Harmon
+ * \date 6/10/2024
  */
+
 #include <ctime>
 #include <sstream>
 #include <chrono>
 #include <iostream>
 #include <thread>
-
 #include <fstream>
+
 class webserver{
 
     private:
@@ -17,12 +19,9 @@ class webserver{
         int serverID;
         std::string ipProcessing;
 
-
     public:
         webserver(int id);
-        void startRequest(std::string ip){isRunningProcess = true; ipProcessing = ip;}
-        //void processRequest(std::ofstream* file);
-        
+        void startRequest(std::string ip){isRunningProcess = true; ipProcessing = ip;}    
         void endProcess(){isRunningProcess = false;}
         bool getStatus(){return isRunningProcess;}
         std::string getReqIP(){return ipProcessing;}
