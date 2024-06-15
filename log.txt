@@ -1,26 +1,126 @@
 -------- Load Balancer Log file ------
 Starting...
-time 0:
-Server: 0 started request 198.38.126.211
-Server: 0 started request 198.38.126.211
-Server: 1 started request 128.92.171.145
-Server: 0 started request 198.38.126.211
-Server: 1 started request 128.92.171.145
-Server: 2 started request 127.91.170.144
-Server: 0 started request 198.38.126.211
-Server: 1 started request 128.92.171.145
-Server: 2 started request 127.91.170.144
-Server: 3 started request 97.153.199.146
-Server: 0 started request 198.38.126.211
-Server: 1 started request 128.92.171.145
-Server: 2 started request 127.91.170.144
-Server: 3 started request 97.153.199.146
-Server: 4 started request 217.254.207.133
-test3 started request 97.153.199.146 which took 1s
-test0 started request 198.38.126.211 which took 1s
-test4 started request 217.254.207.133 which took 1s
-test1 started request 128.92.171.145 which took 1s
-test2 started request 127.91.170.144 which took 2s
-Total number of requests processed: 5
-Total time to complete: 2.03939
+Server: 0 started request 201.217.197.53at time: 0.000288872
+Server: 1 started request 130.78.149.147at time: 0.000627085
+Server: 2 started request 135.22.190.100at time: 0.00103721
+1 started request 130.78.149.147 which took 1s
+0 started request 201.217.197.53 which took 1s
+2 started request 135.22.190.100 which took 1s
+Server: 0 started request 226.81.225.158at time: 0.514646
+Server: 1 started request 160.72.43.83at time: 0.515042
+Server: 2 started request 113.207.233.109at time: 0.515417
+2 started request 113.207.233.109 which took 0s
+1 started request 160.72.43.83 which took 0s
+0 started request 226.81.225.158 which took 0s
+Server: 0 started request 58.213.169.174at time: 1.0266
+Server: 1 started request 160.183.165.105at time: 1.02687
+Server: 2 started request 144.107.159.18at time: 1.02712
+2 started request 144.107.159.18 which took 1s
+1 started request 160.183.165.105 which took 1s
+0 started request 58.213.169.174 which took 1s
+Server: 0 started request 185.52.166.64at time: 1.54564
+Server: 1 started request 74.100.164.44at time: 1.54598
+Server: 2 started request 181.133.202.86at time: 1.54642
+0 started request 185.52.166.64 which took 0s
+1 started request 74.100.164.44 which took 0s
+2 started request 181.133.202.86 which took 0s
+Server: 0 started request 206.245.169.63at time: 2.0664
+Server: 1 started request 196.147.172.255at time: 2.06735
+Server: 2 started request 104.85.173.9at time: 2.06762
+0 started request 206.245.169.63 which took 1s
+2 started request 104.85.173.9 which took 1s
+1 started request 196.147.172.255 which took 1s
+Server: 0 started request 12.82.114.157at time: 2.58802
+Server: 1 started request 189.17.175.118at time: 2.58883
+Server: 2 started request 70.85.182.144at time: 2.58938
+1 started request 189.17.175.118 which took 0s
+0 started request 12.82.114.157 which took 0s
+2 started request 70.85.182.144 which took 0s
+Server: 0 started request 186.90.189.111at time: 3.10999
+Server: 1 started request 224.135.197.174at time: 3.11069
+Server: 2 started request 125.111.237.65at time: 3.11137
+2 started request 125.111.237.65 which took 1s
+1 started request 224.135.197.174 which took 1s
+0 started request 186.90.189.111 which took 1s
+Server: 0 started request 2.153.64.106at time: 3.62944
+Server: 1 started request 238.237.115.251at time: 3.62972
+Server: 2 started request 64.230.152.253at time: 3.62999
+1 started request 238.237.115.251 which took 0s
+2 started request 64.230.152.253 which took 0s
+2 started request 64.230.152.253 which took 0s
+0 started request 2.153.64.106 which took 0s
+Server: 0 started request 247.71.116.61at time: 4.14384
+Server: 1 started request 157.42.206.87at time: 4.14418
+Server: 2 started request 133.139.198.101at time: 4.14445
+1 started request 157.42.206.87 which took 1s
+2 started request 133.139.198.101 which took 1s
+0 started request 247.71.116.61 which took 1s
+Server: 0 started request 18.140.19.143at time: 4.66029
+Server: 1 started request 251.0.209.253at time: 4.66058
+Server: 2 started request 153.17.103.135at time: 4.66093
+0 started request 18.140.19.143 which took 0s
+2 started request 153.17.103.135 which took 0s
+1 started request 251.0.209.253 which took 0s
+Server: 0 started request 255.219.130.63at time: 5.17864
+Server: 1 started request 193.26.60.184at time: 5.17942
+Server: 2 started request 98.176.246.255at time: 5.18023
+2 started request 98.176.246.255 which took 1s
+0 started request 255.219.130.63 which took 1s
+1 started request 193.26.60.184 which took 1s
+Server: 0 started request 219.196.86.96at time: 5.69762
+Server: 1 started request 79.28.197.97at time: 5.69833
+Server: 2 started request 168.216.241.163at time: 5.69859
+2 started request 168.216.241.163 which took 0s
+1 started request 79.28.197.97 which took 0s
+0 started request 219.196.86.96 which took 0s
+Server: 0 started request 216.194.160.113at time: 6.20709
+Server: 1 started request 211.8.248.210at time: 6.20757
+Server: 2 started request 227.123.17.164at time: 6.20797
+2 started request 227.123.17.164 which took 1s
+0 started request 216.194.160.113 which took 1 started request 211.8.248.210 which took 11ss
+0 started request 216.194.160.113 which took 1 started request 211.8.248.210 which took 11ss
+Server: 0 started request 149.78.92.247at time: 6.71668
+Server: 1 started request 254.82.246.217at time: 6.71701
+Server: 2 started request 22.76.57.101at time: 6.71732
+0 started request 149.78.92.247 which took 0s
+2 started request 22.76.57.101 which took 0s
+1 started request 254.82.246.217 which took 0s
+Server: 0 started request 105.254.199.17at time: 7.2364
+Server: 1 started request 214.184.181.174at time: 7.23725
+Server: 2 started request 122.85.31.77at time: 7.23757
+2 started request 122.85.31.77 which took 1s
+1 started request 214.184.181.174 which took 1s
+0 started request 105.254.199.17 which took 1s
+Server: 0 started request 93.24.32.64at time: 7.75565
+Server: 1 started request 147.49.228.40at time: 7.75597
+Server: 2 started request 127.65.32.126at time: 7.75634
+0 started request 93.24.32.64 which took 0s
+1 started request 147.49.228.40 which took 0s
+2 started request 127.65.32.126 which took 0s
+Server: 0 started request 147.22.87.170at time: 8.27605
+Server: 1 started request 99.145.15.204at time: 8.27652
+Server: 2 started request 143.214.221.102at time: 8.27678
+0 started request 147.22.87.170 which took 1s
+1 started request 99.145.15.204 which took 1s
+2 started request 143.214.221.102 which took 1s
+Server: 0 started request 142.146.20.8at time: 8.79435
+Server: 1 started request 232.52.86.69at time: 8.79465
+Server: 2 started request 76.118.134.223at time: 8.79493
+0 started request 142.146.20.8 which took 0s
+1 started request 232.52.86.69 which took 0s
+2 started request 76.118.134.223 which took 0s
+Server: 0 started request 167.106.7.39at time: 9.30942
+Server: 1 started request 171.39.165.63at time: 9.31013
+Server: 2 started request 62.252.233.161at time: 9.31057
+2 started request 62.252.233.161 which took 1s
+0 started request 167.106.7.39 which took 1s
+1 started request 171.39.165.63 which took 1s
+Server: 0 started request 141.248.109.29at time: 9.82825
+Server: 1 started request 207.74.131.93at time: 9.82902
+Server: 2 started request 221.151.102.197at time: 9.82954
+0 started request 141.248.109.29 which took 0s
+1 started request 207.74.131.93 which took 0s
+2 started request 221.151.102.197 which took 0s
+Total number of requests processed: 60
+Total time to complete: 10.3489
 Ending...

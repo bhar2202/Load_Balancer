@@ -68,23 +68,23 @@ void loadbalancer::generateLogFile(){
 
 }
 
-void loadbalancer::handleRequest(webserver server, std::ofstream* file) {
+void loadbalancer::handleRequest(webserver* server, std::ofstream* file) {
     auto startTime = std::chrono::system_clock::now();
     std::time_t start_time = std::chrono::system_clock::to_time_t(startTime);
     //log("Thread " + std::to_string(threadId) + " started at " + std::ctime(&start_time));
 
-    *(file) << "Server: " << server.getServerID() << " started request " << server.getReqIP() << std::endl;
+    // *(file) << "Server: " << server->getServerID() << " started request " << server->getReqIP() << std::endl;
     
 
     // Simulate some work by sleeping for a random duration
-    std::this_thread::sleep_for(std::chrono::milliseconds(rand() % 2000 + 500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(rand() % 20 + 500));
 
     auto endTime = std::chrono::system_clock::now();
     std::time_t end_time = std::chrono::system_clock::to_time_t(endTime);
 
     double duration = std::difftime(end_time, start_time);
-    *(file) << "test" << server.getServerID() << " started request " << server.getReqIP() << " which took " << duration << "s" << std::endl;
-    server.endProcess();
+    *(file) <<  server->getServerID() << " started request " << server->getReqIP() << " which took " << duration << "s" << std::endl;
+    server->endProcess();
     //log("Thread " + std::to_string(threadId) + " ended at " + std::ctime(&end_time));
 }
 
@@ -113,25 +113,25 @@ void loadbalancer::run(){
     
     while (std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - start).count() < targetTimeInMs) {
         // Busy-wait loop to simulate running for the target number of cycles
-        logFile << "time " << i++ << ":" << std::endl;
+        //logFile << "time " << i++ << ":" << std::endl;
 
         // Seed with a real random value, if available
-    std::random_device rd;
+        std::random_device rd;
 
-    // Choose a random number generator
-    std::mt19937 gen(rd());
+        // Choose a random number generator
+        std::mt19937 gen(rd());
 
-    // Define the range
-    std::uniform_int_distribution<> dis(1, 10);
+        // Define the range
+        std::uniform_int_distribution<> dis(1, 10);
 
-    // Generate a random number between 1 and 10
-    int randomNumber = dis(gen);
+        // Generate a random number between 1 and 10
+        int randomNumber = dis(gen);
 
-    if(randomNumber == 1){
-        request req;
-        req.ip = generateRandomIPAddress();
-        reqQueue.push(req);
-    }
+        if(randomNumber == 1){
+            request req;
+            req.ip = generateRandomIPAddress();
+            reqQueue.push(req);
+        }
 
         std::vector<std::thread> threads;
         for (int j = 0; j < numServers; ++j) {
@@ -139,7 +139,8 @@ void loadbalancer::run(){
                 //logFile << "starting request..." << std::endl;
                 request req(reqQueue.pop());
                 servers.at(j).startRequest(req.ip);
-                threads.push_back(std::thread(handleRequest,servers.at(j), &logFile));
+                logFile << "Server: " << servers.at(j).getServerID() << " started request " << servers.at(j).getReqIP() << "at time: " << std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - start).count() << std::endl;
+                threads.push_back(std::thread(handleRequest,&servers.at(j), &logFile));
                 //threads.push_back(std::thread(&webserver::processRequest,&servers.at(j),&logFile));
                 
                 reqHandled++;

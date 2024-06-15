@@ -33,7 +33,7 @@ class loadbalancer{
         int totalClockCycles;
         std::ofstream logFile;
         loadbalancer(int numServers,int numClockCycles);
-        static void handleRequest(webserver server, std::ofstream* file);
+        static void handleRequest(webserver* server, std::ofstream* file);
         void generateServers();
         void fillQueue();
         void run();
