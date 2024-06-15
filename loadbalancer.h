@@ -5,7 +5,7 @@
  */
 
 #include "RequestQueue.cpp"
-#include "webserver.h"
+#include "webserver.cpp"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -23,7 +23,7 @@ class loadbalancer{
     private:
         
         std::vector<webserver> servers;
-        std::string generateRandomIPAddress(int serverID);
+        std::string generateRandomIPAddress();
         
         void generateLogFile();
 
@@ -33,7 +33,7 @@ class loadbalancer{
         int totalClockCycles;
         std::ofstream logFile;
         loadbalancer(int numServers,int numClockCycles);
-        static void handleRequest(int reqID);
+        static void handleRequest(webserver server, std::ofstream* file);
         void generateServers();
         void fillQueue();
         void run();

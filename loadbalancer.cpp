@@ -11,9 +11,8 @@ loadbalancer::loadbalancer(int s, int c){
     
 }
 
-std::string loadbalancer::generateRandomIPAddress(int serverID){
-    // Initialize random seed
-    std::srand(std::time(0) + serverID);
+std::string loadbalancer::generateRandomIPAddress(){
+    
 
     std::ostringstream ip;
     for (int i = 0; i < 4; ++i) {
@@ -31,55 +30,67 @@ std::string loadbalancer::generateRandomIPAddress(int serverID){
 void loadbalancer::generateServers(){
     
     for(int i = 0; i < numServers; i++){
-        std::cout << "IP address " << i << ":" << generateRandomIPAddress(i) << std::endl;
-        //webserver server(5);
-        //servers.push_back(server);
+        //std::cout << "IP address " << i << ":" << generateRandomIPAddress() << std::endl;
+        webserver server(i);
+        servers.push_back(server);
     }
 }
 
 void loadbalancer::fillQueue(){
 
+    // Initialize random seed
+    std::srand(std::time(0));
+
     std::cout << "---- filling queue ----" << std::endl;
     for(int i = 0; i < numServers * 100; i++){
         request req;
+        req.ip = generateRandomIPAddress();
         reqQueue.push(req);
     }
 
-    std::cout << "Queue size: " << reqQueue.size();
+    std::cout << "Queue size: " << reqQueue.size() << std::endl;
 
 }
 
 void loadbalancer::generateLogFile(){
     
-logFile.open("log.txt",std::ios::out | std::ios::app);
+    
+    logFile.open("log.txt", std::ios::trunc);
 
     if (!logFile.is_open()) {
         std::cerr << "Failed to open log file" << std::endl;
         return;
     }
 
-    //empties log file
-    logFile.clear();
 
     logFile << "-------- Load Balancer Log file ------" << std::endl;
 
 
 }
 
-void loadbalancer::handleRequest(int threadId) {
+void loadbalancer::handleRequest(webserver server, std::ofstream* file) {
     auto startTime = std::chrono::system_clock::now();
     std::time_t start_time = std::chrono::system_clock::to_time_t(startTime);
     //log("Thread " + std::to_string(threadId) + " started at " + std::ctime(&start_time));
 
+    *(file) << "Server: " << server.getServerID() << " started request " << server.getReqIP() << std::endl;
+    
+
     // Simulate some work by sleeping for a random duration
-    std::this_thread::sleep_for(std::chrono::milliseconds(rand() % 200 + 50));
+    std::this_thread::sleep_for(std::chrono::milliseconds(rand() % 2000 + 500));
 
     auto endTime = std::chrono::system_clock::now();
     std::time_t end_time = std::chrono::system_clock::to_time_t(endTime);
+
+    double duration = std::difftime(end_time, start_time);
+    *(file) << "test" << server.getServerID() << " started request " << server.getReqIP() << " which took " << duration << "s" << std::endl;
+    server.endProcess();
     //log("Thread " + std::to_string(threadId) + " ended at " + std::ctime(&end_time));
 }
 
 void loadbalancer::run(){
+    
+
     generateLogFile();
     auto start = std::chrono::high_resolution_clock::now();
     auto end = std::chrono::high_resolution_clock::now();
@@ -118,16 +129,19 @@ void loadbalancer::run(){
 
     if(randomNumber == 1){
         request req;
+        req.ip = generateRandomIPAddress();
         reqQueue.push(req);
     }
 
         std::vector<std::thread> threads;
         for (int j = 0; j < numServers; ++j) {
-            if(reqQueue.size() > 0){
+            if(reqQueue.size() > 0 && !servers.at(j).getStatus()){
                 //logFile << "starting request..." << std::endl;
-                //threads.push_back(std::thread(handleRequest, j));
-            
-                reqQueue.pop();
+                request req(reqQueue.pop());
+                servers.at(j).startRequest(req.ip);
+                threads.push_back(std::thread(handleRequest,servers.at(j), &logFile));
+                //threads.push_back(std::thread(&webserver::processRequest,&servers.at(j),&logFile));
+                
                 reqHandled++;
             }
             
@@ -143,4 +157,5 @@ void loadbalancer::run(){
     logFile << "Total number of requests processed: " << reqHandled << std::endl;
     logFile << "Total time to complete: " << std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - start).count() << std::endl;
     logFile << "Ending..." << std::endl;
+    //logFile.close();
 }

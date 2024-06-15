@@ -3,9 +3,6 @@
 
 struct request {
 
-    std::string method;
-    std::string url;
-    std::string protocol;
-    std::string header;
+    std::string ip;
 
 };
