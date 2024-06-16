@@ -8,8 +8,13 @@
 #include <iostream>
 #include <string>
 
+/*!
+ * \brief Request structure containing an ip address and time to process
+ * 
+ */
 struct request {
 
     std::string ip;
+    double time;
 
 };

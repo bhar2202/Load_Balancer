@@ -18,21 +18,25 @@
 #include <mutex>
 #include <random>
 
+/*!
+ * \brief functions for a load balancer simulation
+ */
 class loadbalancer{
     
     private:
-        
+        int numServers;
+        int totalClockCycles;
         std::vector<webserver> servers;
         std::string generateRandomIPAddress();
         void generateLogFile();
-        int numServers;
-        int totalClockCycles;
+        uint32_t ipToInteger(const std::string &ip);
+        bool isIpInRange(const std::string &ip);
 
     public:
         RequestQueue reqQueue;
         std::ofstream logFile;
         loadbalancer(int numServers,int numClockCycles);
-        static void handleRequest(webserver* server, std::ofstream* file);
+        static void handleRequest(webserver* server, request* req, std::ofstream* file);
         void generateServers();
         void fillQueue();
         void run();

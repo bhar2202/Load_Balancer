@@ -10,13 +10,15 @@
 #include <vector>
 #include "request.h"
 
+/*!
+ * \brief functions for handling a queue structure of requests
+ */
 class RequestQueue{
 
     private:
-        
+        std::vector<request> queue;
 
     public:
-        std::vector<request> queue;
         void push(request req);
         request pop();
         size_t size();

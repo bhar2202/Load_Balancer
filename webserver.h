@@ -12,6 +12,9 @@
 #include <thread>
 #include <fstream>
 
+/*!
+ * \brief simulates functions of a webserver that processes requests
+ */
 class webserver{
 
     private:
@@ -21,10 +24,10 @@ class webserver{
 
     public:
         webserver(int id);
-        void startRequest(std::string ip){isRunningProcess = true; ipProcessing = ip;}    
-        void endProcess(){isRunningProcess = false;}
-        bool getStatus(){return isRunningProcess;}
-        std::string getReqIP(){return ipProcessing;}
-        int getServerID(){return serverID;}
+        void startRequest(); 
+        void endProcess();
+        bool getStatus();
+        std::string getReqIP();
+        int getServerID();
 
 };
