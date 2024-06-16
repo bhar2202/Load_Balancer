@@ -27,6 +27,7 @@ class webserver{
         void startRequest(); 
         void endProcess();
         bool getStatus();
+        void setReqIP(std::string ip);
         std::string getReqIP();
         int getServerID();
 

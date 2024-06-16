@@ -147,6 +147,9 @@ void loadbalancer::run(){
     // Start a busy-wait loop for the target time
     start = std::chrono::high_resolution_clock::now();
     logFile << "Starting..." << std::endl;
+    logFile << "Starting Queue size: " << reqQueue.size() << std::endl;
+    logFile << "Number of servers: " << numServers << std::endl;
+    logFile << "Number of clock cycles to run: " << totalClockCycles << std::endl;
     int reqHandled = 0;
     int clockCycle = 0;
     int numInvalidReqs = 0;
@@ -199,6 +202,7 @@ void loadbalancer::run(){
                     logFile << "Warning: Potential DOS attack detected. large queue size of: " << reqQueue.size() << std::endl;
                 }
 
+                servers.at(j).setReqIP(req.ip);
                 servers.at(j).startRequest();
                 logFile << "Server: " << servers.at(j).getServerID() << " starting request " << servers.at(j).getReqIP() << " at clock cycle: " << clockCycle << std::endl;
                 threads.push_back(std::thread(handleRequest,&servers.at(j),&req, &logFile));
@@ -218,7 +222,8 @@ void loadbalancer::run(){
     logFile << "Total number of requests processed: " << reqHandled << std::endl;
     logFile << "Total number of invalid requests: " << numInvalidReqs << std::endl;
     logFile << "Ending queue size: " << reqQueue.size() << std::endl;
-    logFile << "Total time to complete: " << std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - start).count() << std::endl;
+    logFile << "Total time to complete: " << std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - start).count() << "s" << std::endl;
+    logFile << "Range of task times: 1 to 4 ms" << std::endl;
     logFile << "Ending..." << std::endl;
 
 }

@@ -43,3 +43,10 @@ std::string webserver::getReqIP(){return ipProcessing;}
  * \brief returns the id of this specific server
  */
 int webserver::getServerID(){return serverID;}
+
+/*!
+ * \brief sets the ip currently being processed
+ */
+void webserver::setReqIP(std::string ip){
+    ipProcessing = ip;
+}
